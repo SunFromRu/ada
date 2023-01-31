@@ -54,7 +54,7 @@ pcall(
 
 task.wait(30)
 -----------------------
---YOUR AZTUB HUB HERE--
+----AZTUP HUB HERE-----
 -----------------------
 
 --ANTILAG
@@ -72,12 +72,11 @@ end)
 --AUTONEON
 spawn(
     function()
-        while Settings.Neon do
+        while true do
             wait(2)
             do
                 pcall(
                     function()
-
                         local Number = 0
                        for i, v in pairs(
                             require(ReplicatedStorage.ClientModules.Core.ClientData).get_data()[Player.Name].inventory.pets
@@ -108,12 +107,8 @@ spawn(
 --REQUIERED FPS UNLOCK
 RunService.Stepped:connect(
     function()
-        if Settings.Go then
-            Player.Character:WaitForChild("Humanoid").WalkSpeed = Settings.WalkSpeed
-            Player.Character:WaitForChild("Humanoid").JumpPower = Settings.JumpPower
-            if not UserInputService.WindowFocusReleased then
-                setfpscap(25)
-            end
+        if not UserInputService.WindowFocusReleased then
+            setfpscap(25)
         end
     end
 )
