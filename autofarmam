@@ -29,6 +29,25 @@ task.wait(15)
 Nexus.Connected:Connect(function()
 performance();
 end)
+
+spawn(function()
+    while NewsApp.Enabled do wait(4)
+        for i,v in pairs(getconnections(PlayButton.MouseButton1Click)) do
+            v:Fire()
+        end 
+    end 
+end)
+spawn(function()
+    while Baby.Visible do wait(1)
+        if Baby.Visible then
+            for i,v in pairs(getconnections(Baby.MouseButton1Click)) do
+                v:Fire()
+            end 
+        end 
+    end 
+end)
+
+task.wait(30)
 -----------------------
 pcall(
 	function(AZTUPHUB)
