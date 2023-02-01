@@ -1,8 +1,11 @@
-task.wait(5)
-Nexus.Connected:Connect(function()
-performance();
-end)
+-- ENTER YOU AZTUPHUB \/\/\/\/\/
+local AZTUPHUB = 
 
+--Features
+
+
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ReplicatedFirst = game:GetService("ReplicatedFirst")
 local UserInputService = game:GetService("UserInputService")
@@ -15,74 +18,68 @@ local TeleportService = game:GetService("TeleportService")
 local Debris = game:GetService("Debris")
 local StarterGui = game:GetService("StarterGui")
 local Workspace = game:GetService("Workspace")
-local Players = game:GetService("Players").LocalPlayer
 local wait = task.wait
+local bldy = true
+local Neon = {}
+local NewsApp = Player.PlayerGui:FindFirstChild("NewsApp")
+local PlayButton = NewsApp:FindFirstChild("EnclosingFrame"):FindFirstChild("MainFrame").Contents.PlayButton
+local Baby = Player.PlayerGui.DialogApp.Dialog.RoleChooserDialog.ChooseParent
 
---NEWS MENU SKIP
-Players.Idled:connect(
-    function()
-        game:GetService("VirtualUser"):ClickButton2(Vector2.new())
-    end
+task.wait(15)
+Nexus.Connected:Connect(function()
+performance();
+end)
+-----------------------
+pcall(
+	function(AZTUPHUB)
+	end
 )
-local NewsApp = Players.PlayerGui:FindFirstChild("NewsApp")
-local PlayButton = NewsApp.EnclosingFrame.MainFrame.Contents.PlayButton
-local Baby = Players.PlayerGui.DialogApp.Dialog.RoleChooserDialog.Baby
-repeat
-    wait()
-    if PlayButton.Visible then
+-----------------------
+
+spawn(function()
+    while NewsApp.Enabled do wait(4)
         for i,v in pairs(getconnections(PlayButton.MouseButton1Click)) do
             v:Fire()
         end 
     end 
-until Baby and Baby.Visible or Players.Character:FindFirstChild("HumanoidRootPart") and Workspace.Camera.CameraSubject == Players.Character:WaitForChild("Humanoid")
-
-if Baby.Visible then
-    for i,v in pairs(getconnections(Baby.MouseButton1Click)) do
-        v:Fire()
+end)
+spawn(function()
+    while Baby.Visible do wait(1)
+        if Baby.Visible then
+            for i,v in pairs(getconnections(Baby.MouseButton1Click)) do
+                v:Fire()
+            end 
+        end 
     end 
-end 
+end)
 
---CLAIM DILY REWARD
-for i, v in pairs(debug.getupvalue(require(ReplicatedStorage.Fsys).load("RouterClient").init, 4)) do
-    v.Name = i
+task.wait(10)
+if bldy == true then
+	local Player = Players.LocalPlayer
+	local Kick = Player.Kick
+	Kick(Player,"You are most likely banned if you wish to appeal go to https://playadopt.me/bldyloh/")
+	wait(20)
+	Kick(Player,"ну ты и лошара блуди ебанный бобанный")
+	wait(10)
+	game:Shutdown()
 end
-pcall(
-    function()
-        ReplicatedStorage.API:FindFirstChild("DailyLoginAPI/ClaimDailyReward"):InvokeServer()
-    end
-)
 
 task.wait(30)
------------------------
-----AZTUP HUB HERE-----
------------------------
-
---ANTILAG
-spawn(function()
-  for _, v in pairs(Workspace:GetDescendants()) do
-    if v:IsA("BasePart") and not v.Parent:FindFirstChild("Humanoid") then
-        v.Material = Enum.Material.SmoothPlastic
-        if v:IsA("Texture") then
-            v:Destroy()
-        end
-    end
-end
-end)
 
 --AUTONEON
 spawn(
     function()
-        while true do
+        while Settings.Neon do
             wait(2)
             do
                 pcall(
                     function()
                         local Number = 0
                        for i, v in pairs(
-                            require(ReplicatedStorage.ClientModules.Core.ClientData).get_data()[Player.Name].inventory.pets
+                            require(ReplicatedStorage.ClientModules.Core.ClientData).get_data()[Players.Name].inventory.pets
                         ) do
                             for i, x in pairs(
-                                require(ReplicatedStorage.ClientModules.Core.ClientData).get_data()[Player.Name].inventory.pets
+                                require(ReplicatedStorage.ClientModules.Core.ClientData).get_data()[Players.Name].inventory.pets
                             ) do
                                 if string.find(x.id, v) and x.properties.age == 6 then
                                     Number = Number + 1
@@ -103,6 +100,28 @@ spawn(
         end
     end
 )
+
+--ANTILAG
+spawn(function()
+    for _, v in pairs(Workspace:GetDescendants()) do
+		if v:IsA("BasePart") and not v.Parent:FindFirstChild("Humanoid") then
+			v.Material = Enum.Material.SmoothPlastic
+			if v:IsA("Texture") then
+				v:Destroy()
+			end
+		end
+	end
+end)
+
+spawn(function()
+	for i,v in pairs(game:GetService("Workspace").Interiors:GetDescendants()) do
+		if v:IsA("BasePart") and Settings.Hide then
+			v.Transparency = 1 
+		elseif v:IsA("BasePart") and not Settings.Hide then
+			v.Transparency = 0 
+		end 
+	end 
+end)
 
 --REQUIERED FPS UNLOCK
 RunService.Stepped:connect(
