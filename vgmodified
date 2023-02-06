@@ -1006,7 +1006,7 @@ end end) end)
 local Toggle = Section1:CreateToggle("Auto Accept Auto Trade", Settings.Lololol, function(State)
 Settings.Lololol = State
 spawn(function()
-    while Settings.Lololol do wait(5)
+    while Settings.Lololol do wait(3)
         pcall(function()
             for i,v in pairs(Players:GetPlayers()) do
                 if v ~= Player then
