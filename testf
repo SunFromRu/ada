@@ -21,7 +21,7 @@ while wait(0.1) do
                 if workspace.Delivery.PlayersShips[userids] ~= nil then
                     workspace.Delivery.PlayersShips[userids]:SetPrimaryPartCFrame(workspace.Delivery["Parking "..userids].CFrame)
                     wait(0.5)
-                    input.hold(Enum.KeyCode.E, 5)
+                    input.hold(Enum.KeyCode.E, 7)
                 elseif workspace.Delivery.PlayersShips[userids] == nil then
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Delivery.TakeOrderZone.Part.CFrame
                 end
@@ -37,7 +37,7 @@ while wait(0.1) do
                 if workspace.Delivery.PlayersShips[userids] ~= nil then
                     workspace.Delivery.PlayersShips[userids]:SetPrimaryPartCFrame(workspace.Delivery["Parking "..userids].CFrame)
                     wait(0.5)
-                input.hold(Enum.KeyCode.E, 5)
+                input.hold(Enum.KeyCode.E, 7)
             elseif workspace.Delivery.PlayersShips[userids] == nil then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Delivery.TakeOrderZone.Part.CFrame
             end
