@@ -1,152 +1,38 @@
--- ENTER YOU AZTUPHUB \/\/\/\/\/
-local AZTUPHUB = 
+local input = loadstring(game:HttpGet('https://pastebin.com/raw/dYzQv3d8'))()
+print("started")
+local userids = game.Players.LocalPlayer.UserId
 
---Features
+print(userids)
 
-
-local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local ReplicatedFirst = game:GetService("ReplicatedFirst")
-local UserInputService = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
-local TweenService = game:GetService("TweenService")
-local Lighting = game:GetService("Lighting")
-local CoreGui = game:GetService("CoreGui")
-local HttpService = game:GetService("HttpService")
-local TeleportService = game:GetService("TeleportService")
-local Debris = game:GetService("Debris")
-local StarterGui = game:GetService("StarterGui")
-local Workspace = game:GetService("Workspace")
-local wait = task.wait
-local bldy = true
-local Neon = {}
-local NewsApp = Player.PlayerGui:FindFirstChild("NewsApp")
-local PlayButton = NewsApp:FindFirstChild("EnclosingFrame"):FindFirstChild("MainFrame").Contents.PlayButton
-local Baby = Player.PlayerGui.DialogApp.Dialog.RoleChooserDialog.ChooseParent
-
-task.wait(15)
-Nexus.Connected:Connect(function()
-performance();
-end)
-
-spawn(function()
-    while NewsApp.Enabled do wait(4)
-        for i,v in pairs(getconnections(PlayButton.MouseButton1Click)) do
-            v:Fire()
-        end 
-    end 
-end)
-spawn(function()
-    while Baby.Visible do wait(1)
-        if Baby.Visible then
-            for i,v in pairs(getconnections(Baby.MouseButton1Click)) do
-                v:Fire()
-            end 
-        end 
-    end 
-end)
-
-task.wait(30)
------------------------
-pcall(
-	function(AZTUPHUB)
-	end
-)
------------------------
-
-spawn(function()
-    while NewsApp.Enabled do wait(4)
-        for i,v in pairs(getconnections(PlayButton.MouseButton1Click)) do
-            v:Fire()
-        end 
-    end 
-end)
-spawn(function()
-    while Baby.Visible do wait(1)
-        if Baby.Visible then
-            for i,v in pairs(getconnections(Baby.MouseButton1Click)) do
-                v:Fire()
-            end 
-        end 
-    end 
-end)
-
-task.wait(10)
-if bldy == true then
-	local Player = Players.LocalPlayer
-	local Kick = Player.Kick
-	Kick(Player,"You are most likely banned if you wish to appeal go to https://playadopt.me/bldyloh/")
-	wait(20)
-	Kick(Player,"ну ты и лошара блуди ебанный бобанный")
-	wait(10)
-	game:Shutdown()
-end
-
-task.wait(30)
-
---AUTONEON
-spawn(
-    function()
-        while Settings.Neon do
-            wait(2)
-            do
-                pcall(
-                    function()
-                        local Number = 0
-                       for i, v in pairs(
-                            require(ReplicatedStorage.ClientModules.Core.ClientData).get_data()[Players.Name].inventory.pets
-                        ) do
-                            for i, x in pairs(
-                                require(ReplicatedStorage.ClientModules.Core.ClientData).get_data()[Players.Name].inventory.pets
-                            ) do
-                                if string.find(x.id, v) and x.properties.age == 6 then
-                                    Number = Number + 1
-                                    table.insert(Spec, x.unique)
-                                    if Number == 4 then
-                                        ReplicatedStorage.API:FindFirstChild("PetAPI/DoNeonFusion"):InvokeServer(
-                                            {unpack(Spec)}
-                                        )
-                                        Number = 0
-                                        table.clear(Spec)
-                                    end
-                                end
-                            end
-                        end
-                    end
-                )
+while wait(0.1) do
+    if (game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "0/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "1/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "2/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "3/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "4/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "5/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "6/20") then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1840.58, 405.431, 979.824)
+        wait(0.5)
+        input.hold(Enum.KeyCode.E, 2.5)
+        print("energy checked")
+        wait(90)
+    else
+        if workspace.Delivery.TakeOrderZone.Part.Transparency == 0.5 then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Delivery.TakeOrderZone.Part.CFrame
+            if workspace.Delivery.TakeOrderZone.Part.Transparency == 1 then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Delivery.Ships.CourierRocket.ExitPart.CFrame
+                wait(1)
+                input.hold(Enum.KeyCode.E, 5)
+                if workspace.Delivery.PlayersShips[userids] ~= nil then
+                    workspace.Delivery.PlayersShips[userids]:SetPrimaryPartCFrame(workspace.Delivery["Parking "..userids].CFrame)
+                    wait(0.5)
+                    input.hold(Enum.KeyCode.E, 5)
+                elseif workspace.Delivery.PlayersShips[userids] == nil then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Delivery.TakeOrderZone.Part.CFrame
+                end
+            elseif workspace.Delivery.TakeOrderZone.Part.Transparency == 0.5 then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Delivery.TakeOrderZone.Part.CFrame
+                input.hold(Enum.KeyCode.W, 0.8)
+                wait(0.5)
             end
+        elseif workspace.Delivery.TakeOrderZone.Part.Transparency == 1 then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Delivery.Ships.CourierRocket.ExitPart.CFrame
+            return
         end
     end
-)
-
---ANTILAG
-spawn(function()
-    for _, v in pairs(Workspace:GetDescendants()) do
-		if v:IsA("BasePart") and not v.Parent:FindFirstChild("Humanoid") then
-			v.Material = Enum.Material.SmoothPlastic
-			if v:IsA("Texture") then
-				v:Destroy()
-			end
-		end
-	end
-end)
-
-spawn(function()
-	for i,v in pairs(game:GetService("Workspace").Interiors:GetDescendants()) do
-		if v:IsA("BasePart") and Settings.Hide then
-			v.Transparency = 1 
-		elseif v:IsA("BasePart") and not Settings.Hide then
-			v.Transparency = 0 
-		end 
-	end 
-end)
-
---REQUIERED FPS UNLOCK
-RunService.Stepped:connect(
-    function()
-        if not UserInputService.WindowFocusReleased then
-            setfpscap(25)
-        end
-    end
-)
+end
