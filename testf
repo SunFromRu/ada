@@ -8,7 +8,7 @@ while wait(0.1) do
     if (game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "0/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "1/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "2/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "3/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "4/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "5/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "6/20") then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1840.58, 405.431, 979.824)
         wait(0.5)
-        input.hold(Enum.KeyCode.E, 2.5)
+        input.hold(Enum.KeyCode.E, 5)
         print("energy checked")
         wait(90)
     else
