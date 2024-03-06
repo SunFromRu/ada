@@ -1,5 +1,4 @@
 local input = loadstring(game:HttpGet('https://pastebin.com/raw/dYzQv3d8'))()
-game.Players.LocalPlayer.PlayerGui.PopupGui:Destroy()
 print("started")
 local userids = game.Players.LocalPlayer.UserId
 
