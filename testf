@@ -8,15 +8,15 @@ print(userids)
 while wait(0.1) do
     if (game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "0/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "1/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "2/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "3/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "4/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "5/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "6/20") then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1840.58, 405.431, 979.824)
-        wait(0.5)
+        input.hold(Enum.KeyCode.E, 3)
+        wait(1)
         input.hold(Enum.KeyCode.E, 3)
         print("energy checked")
         wait(70)
     else
         if workspace.Delivery.TakeOrderZone.Part.Transparency == 0.5 then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Delivery.TakeOrderZone.Part.CFrame
-            input.hold(Enum.KeyCode.W, 0.4)
-            wait(0.3)
+            input.hold(Enum.KeyCode.W, 0.2)
             attemps = attemps + 1
             print(attemps.." failsave")
             if attemps >= 5 then
@@ -29,7 +29,7 @@ while wait(0.1) do
             input.hold(Enum.KeyCode.E, 3)
             if workspace.Delivery:FindFirstChild("Parking "..userids) then
                 workspace.Delivery.PlayersShips[userids]:SetPrimaryPartCFrame(workspace.Delivery["Parking "..userids].CFrame)
-                wait(0.5)
+                wait(0.3)
                 input.hold(Enum.KeyCode.E, 3)
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Delivery.TakeOrderZone.Part.CFrame
                 attemps = attemps * 0 - 1
