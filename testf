@@ -21,7 +21,7 @@ while wait(0.1) do
             print(attemps.." failsave")
             if attemps >= 5 then
                 input.hold(Enum.KeyCode.E, 3)
-                attemps = attemps * 0
+                attemps = attemps * 0 - 1
             end
         elseif workspace.Delivery.TakeOrderZone.Part.Transparency == 1 then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Delivery.Ships.CourierRocket.ExitPart.CFrame
@@ -32,7 +32,7 @@ while wait(0.1) do
                 wait(0.5)
                 input.hold(Enum.KeyCode.E, 3)
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Delivery.TakeOrderZone.Part.CFrame
-                attemps = attemps * 0
+                attemps = attemps * 0 - 1
             else
                 input.hold(Enum.KeyCode.E, 3)
             end
