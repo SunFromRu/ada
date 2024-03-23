@@ -1,1 +1,27 @@
-game:GetService("Players").LocalPlayer:Kick("Contact me in tg")
+local input = loadstring(game:HttpGet('https://pastebin.com/raw/dYzQv3d8'))()
+local Players = game:GetService("Players")
+local userids = game.Players.LocalPlayer.UserId
+
+function gotoDirt()
+    if workspace.RuntimeTemp.TrashObjects:GetChildren() then
+        for i,v in pairs(workspace.RuntimeTemp.TrashObjects:GetChildren()) do
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Root.CFrame
+        end
+    end
+end
+
+while wait() do
+    if (game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "0/30" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "1/30" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "2/30" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "3/30" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "4/30" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "5/30" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "6/30") then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1840.58, 405.431, 979.824)
+        input.hold(Enum.KeyCode.E, 2.3)
+        wait(1)
+        input.hold(Enum.KeyCode.E, 2.3)
+        print("energy checked")
+        wait(77)
+        input.press(Enum.KeyCode.Space)
+    else
+        gotoDirt()
+        wait(0.05)
+        input.hold(Enum.KeyCode.E, 3.5)
+    end
+end
