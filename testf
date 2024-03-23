@@ -11,7 +11,7 @@ function gotoDirt()
 end
 
 while wait() do
-    if (game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "0/30" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "1/30" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "2/30" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "3/30" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "4/30" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "5/30" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "6/30") then
+    if (game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "0/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "1/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "2/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "3/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "4/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "5/20" or game.Players.LocalPlayer.PlayerGui.MainGui.Currency.Energy.TextLabel.Text == "6/20") then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1840.58, 405.431, 979.824)
         input.hold(Enum.KeyCode.E, 2.3)
         wait(1)
