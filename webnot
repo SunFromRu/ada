@@ -1,0 +1,139 @@
+task.wait(120)
+local hugesInventory = {}
+print("STARTED WEBHOOK NOTIFIER")
+
+--[[VARIABLES]]--
+local network = game:GetService("ReplicatedStorage"):WaitForChild("Network")
+local playerName = game:GetService("Players").LocalPlayer.Name
+local playerHumanoid = game:GetService("Workspace")[playerName].HumanoidRootPart
+local httpService = game:GetService("HttpService")
+local request = request or http_request or http.request
+
+--[[WEBHOOK BUILDER]]--
+local function webhookBuilder(webhookUrl)
+    local webhook = {}
+    webhook.webhookUrl = webhookUrl
+    webhook.username = nil
+    webhook.avatarUrl = nil
+    webhook.content = nil
+    webhook.embeds = {}
+    function webhook:setUsername(username)
+        webhook.username = username
+    end
+    function webhook:setAvatarUrl(avatarUrl)
+        webhook.avatarUrl = avatarUrl
+    end
+    function webhook:setContent(content)
+        webhook.content = content
+    end
+    function webhook:createEmbed()
+        local embed = {}
+        function embed:setAuthor(name, url, iconUrl)
+            embed.author = {
+                name = name,
+                url = url or nil,
+                icon_url = iconUrl or nil
+            }
+        end
+        function embed:setTitle(title)
+            embed.title = title
+        end
+        function embed:setUrl(url)
+            embed.url = url
+        end
+        function embed:setDescription(description)
+            embed.description = description
+        end
+        function embed:setColor(color)
+            embed.color = color
+        end
+        function embed:addField(name, value, inline)
+            embed.fields = embed.fields or {}
+            table.insert(embed.fields, {
+                name = name,
+                value = value,
+                inline = inline or false
+            })
+        end
+        function embed:setThumbnail(url)
+            embed.thumbnail = {
+                url = url
+            }
+        end
+        function embed:setImage(url)
+            embed.image = {
+                url = url
+            }
+        end
+        function embed:setFooter(text, iconUrl)
+            embed.footer = {
+                text = text,
+                icon_url = iconUrl or nil
+            }
+        end
+        table.insert(webhook.embeds, embed)
+        return embed
+    end
+
+    function webhook:send()
+        request({
+            Url = webhook.webhookUrl,
+            Method = "POST",
+            Body = httpService:JSONEncode({
+                username = webhook.username,
+                avatar_url = webhook.avatarUrl,
+                content = webhook.content,
+                embeds = webhook.embeds
+            }),
+            Headers = {
+                ["Content-Type"] = "application/json"
+            }
+        })
+    end
+
+    return webhook
+end
+
+--[[UPDATE HUGES TABLE]]--
+local function preloadHuges()
+    for i,v in require(game:GetService("ReplicatedStorage"):WaitForChild("Library")).Save.Get().Inventory.Pet do
+        if  not v.pt and not v.sh and v.id == "Huge Fossil Dragon" then
+            table.insert(hugesInventory, i)
+        end
+    end
+end
+
+--[[PRINT SAVED HUGES IN TABLE]]--
+local function printpreloadHuges()
+    for i,v in pairs(hugesInventory) do
+        print(v)
+    end
+end
+
+--[[PRELOAD TABLE WITH HUGES]]--
+preloadHuges()
+printpreloadHuges()
+
+--[[CHECKING INVENTORY FOR NEW HUGES]]--
+local function currentHugesCheck()
+    for petUID,v in require(game:GetService("ReplicatedStorage"):WaitForChild("Library")).Save.Get().Inventory.Pet do
+        if  not v.pt and not v.sh and v.id == "Huge Fossil Dragon" then
+            if not table.find(hugesInventory, petUID) then
+                preloadHuges()
+                local webhook = webhookBuilder("https://discord.com/api/webhooks/1148163311012167690/1Rw0TbKFpieVVo8Db_nj2zr6PCE0ZAyvoYhg3IlZmRS_JEurvhztNHvfJfYYfiBX1Ngw")
+                webhook:setUsername("NugeNotifier")
+                local embed = webhook:createEmbed()
+                embed:setDescription("<@764832238529413140>")
+                embed:setThumbnail("https://static.wikia.nocookie.net/pet-simulator/images/4/43/PS99_Huge_Fossil_Dragon.png/revision/latest?cb=20231203071426")
+                embed:setTitle("Got "..v.id)
+                embed:setColor(5177088)
+                webhook:send()
+            end
+        end
+    end
+end
+
+--[[LOOP FOR CHECKING]]--
+while wait(60) do
+    currentHugesCheck()
+end
