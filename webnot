@@ -128,6 +128,16 @@ local function currentHugesCheck()
                 embed:setTitle("Got "..v.id)
                 embed:setColor(5177088)
                 webhook:send()
+        if  not v.pt and not v.sh and v.id == "Huge Cat" then
+                preloadHuges()
+                local webhook = webhookBuilder("https://discord.com/api/webhooks/1148163311012167690/1Rw0TbKFpieVVo8Db_nj2zr6PCE0ZAyvoYhg3IlZmRS_JEurvhztNHvfJfYYfiBX1Ngw")
+                webhook:setUsername("NugeNotifier")
+                local embed = webhook:createEmbed()
+                embed:setDescription("<@764832238529413140>")
+                embed:setThumbnail("https://static.wikia.nocookie.net/pet-simulator/images/4/43/PS99_Huge_Fossil_Dragon.png/revision/latest?cb=20231203071426")
+                embed:setTitle("Got "..v.id)
+                embed:setColor(5177088)
+                webhook:send()
             end
         end
     end
