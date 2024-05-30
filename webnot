@@ -7,7 +7,28 @@ getgenv.config = {
 ]]--
 
 local hugesInventory = {}
+
+if not config then
+    game.Players.LocalPlayer:Kick("Setup config first") break
+end
+
 print("STARTED WEBHOOK NOTIFIER")
+
+repeat
+    task.wait()
+until game:IsLoaded()
+
+repeat
+    task.wait()
+until game.PlaceId ~= nil
+
+repeat
+    task.wait()
+until game:GetService("Players").LocalPlayer and game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+
+repeat
+    task.wait()
+until game:GetService("Workspace").__THINGS and game:GetService("Workspace").__DEBRIS
 
 --[[VARIABLES]]--
 local network = game:GetService("ReplicatedStorage"):WaitForChild("Network")
