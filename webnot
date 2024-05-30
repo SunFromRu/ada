@@ -151,7 +151,16 @@ local function currentHugesCheck()
             local webhook = webhookBuilder(webhookUrl)
             webhook:setUsername("NugeNotifier")
             local embed = webhook:createEmbed()
-            embed:setTitle("<@!"..config.discordId.."> got "..v.id)
+            if not v.pt then
+                embed:setTitle("<@!"..config.discordId.."> got "..v.id)
+                embed:setThumbnail("https://static.wikia.nocookie.net/pet-simulator/images/5/5e/PS99_Huge_Cyber_Agony.png/revision/latest?cb=20240311010444")
+            elseif
+                embed:setTitle("<@!"..config.discordId.."> got Golden "..v.id)
+                embed:setThumbnail("https://tr.rbxcdn.com/0726bdc435e6a09ef4a937db03f3570b/150/150/Image/Png")
+            elseif
+                embed:setTitle("<@!"..config.discordId.."> got Rainbow"..v.id)
+                embed:setThumbnail("https://petsimulatorvalues.com/Admin/Image/Value/Huge%20Cyber%20Agony-Rainbow.png")
+            end
             embed:setColor(5177088)
             webhook:send()
         end
