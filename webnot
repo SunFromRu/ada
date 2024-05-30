@@ -146,7 +146,7 @@ printpreloadHuges()
 --[[CHECKING INVENTORY FOR NEW HUGES]]--
 local function currentHugesCheck()
     for petUID,v in require(game:GetService("ReplicatedStorage"):WaitForChild("Library")).Save.Get().Inventory.Pet do
-        if string.match(v.id, "Huge") and not table.find(hugesInventory, petUID) then
+        if string.match(v.id, "Huge") and not table.find(hugesInventory, petUID) and not game.PlaceId == 15502339080 then
             preloadHuges()
             local webhook = webhookBuilder(webhookUrl)
             webhook:setUsername("NugeNotifier")
