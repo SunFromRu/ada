@@ -38,7 +38,7 @@ local httpService = game:GetService("HttpService")
 local request = request or http_request or http.request
 
 --[[WEBHOOK BUILDER]]--
-local function webhookBuilder(config.)
+local function webhookBuilder(config.webhookUrl)
     local webhook = {}
     webhook.webhookUrl = config.webhookUrl
     webhook.username = nil
