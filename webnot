@@ -9,7 +9,7 @@ getgenv.config = {
 local hugesInventory = {}
 
 if not config then
-    game.Players.LocalPlayer:Kick("Setup config first") break
+    game.Players.LocalPlayer:Kick("Setup config first")
 end
 
 print("STARTED WEBHOOK NOTIFIER")
