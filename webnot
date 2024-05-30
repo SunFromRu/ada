@@ -125,7 +125,7 @@ end
 --[[UPDATE HUGES TABLE]]--
 local function preloadHuges()
     for i,v in require(game:GetService("ReplicatedStorage"):WaitForChild("Library")).Save.Get().Inventory.Pet do
-        if  not v.pt and not v.sh and v.id == "Huge Fossil Dragon" then
+        if  not v.pt and not v.sh and string.match(v.id, "Huge") then
             table.insert(hugesInventory, i)
         end
     end
@@ -150,8 +150,6 @@ local function currentHugesCheck()
             local webhook = webhookBuilder(webhookUrl)
             webhook:setUsername("NugeNotifier")
             local embed = webhook:createEmbed()
-            embed:setDescription("<@764832238529413140>")
-            embed:setThumbnail("https://static.wikia.nocookie.net/pet-simulator/images/4/43/PS99_Huge_Fossil_Dragon.png/revision/latest?cb=20231203071426")
             embed:setTitle(config.discordId.."got "..v.id)
             embed:setColor(5177088)
             webhook:send()
