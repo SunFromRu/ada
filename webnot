@@ -151,7 +151,7 @@ local function currentHugesCheck()
             local webhook = webhookBuilder(webhookUrl)
             webhook:setUsername("NugeNotifier")
             local embed = webhook:createEmbed()
-            embed:setTitle(config.discordId.."got "..v.id)
+            embed:setTitle("<@!"..config.discordId.."> got "..v.id)
             embed:setColor(5177088)
             webhook:send()
         end
