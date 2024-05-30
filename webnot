@@ -38,9 +38,9 @@ local httpService = game:GetService("HttpService")
 local request = request or http_request or http.request
 
 --[[WEBHOOK BUILDER]]--
-local function webhookBuilder(webhookUrl)
+local function webhookBuilder(config.)
     local webhook = {}
-    webhook.webhookUrl = webhookUrl
+    webhook.webhookUrl = config.webhookUrl
     webhook.username = nil
     webhook.avatarUrl = nil
     webhook.content = nil
@@ -147,7 +147,7 @@ local function currentHugesCheck()
     for petUID,v in require(game:GetService("ReplicatedStorage"):WaitForChild("Library")).Save.Get().Inventory.Pet do
         if string.match(v.id, "Huge") and not table.find(hugesInventory, petUID) then
             preloadHuges()
-            local webhook = webhookBuilder(webhookUrl)
+            local webhook = webhookBuilder(config.webhookUrl)
             webhook:setUsername("NugeNotifier")
             local embed = webhook:createEmbed()
             embed:setTitle(config.discordId.."got "..v.id)
