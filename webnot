@@ -1,4 +1,11 @@
-task.wait(120)
+--[[SETTINGS]]--
+--[[
+getgenv.config = {
+    discordId = ""
+    webhookUrl = ""
+}
+]]--
+
 local hugesInventory = {}
 print("STARTED WEBHOOK NOTIFIER")
 
@@ -117,33 +124,21 @@ printpreloadHuges()
 --[[CHECKING INVENTORY FOR NEW HUGES]]--
 local function currentHugesCheck()
     for petUID,v in require(game:GetService("ReplicatedStorage"):WaitForChild("Library")).Save.Get().Inventory.Pet do
-        if  not v.pt and not v.sh and v.id == "Huge Fossil Dragon" then
-            if not table.find(hugesInventory, petUID) then
-                preloadHuges()
-                local webhook = webhookBuilder("https://discord.com/api/webhooks/1148163311012167690/1Rw0TbKFpieVVo8Db_nj2zr6PCE0ZAyvoYhg3IlZmRS_JEurvhztNHvfJfYYfiBX1Ngw")
-                webhook:setUsername("NugeNotifier")
-                local embed = webhook:createEmbed()
-                embed:setDescription("<@764832238529413140>")
-                embed:setThumbnail("https://static.wikia.nocookie.net/pet-simulator/images/4/43/PS99_Huge_Fossil_Dragon.png/revision/latest?cb=20231203071426")
-                embed:setTitle("Got "..v.id)
-                embed:setColor(5177088)
-                webhook:send()
-        if  not v.pt and not v.sh and v.id == "Huge Cat" then
-                preloadHuges()
-                local webhook = webhookBuilder("https://discord.com/api/webhooks/1148163311012167690/1Rw0TbKFpieVVo8Db_nj2zr6PCE0ZAyvoYhg3IlZmRS_JEurvhztNHvfJfYYfiBX1Ngw")
-                webhook:setUsername("NugeNotifier")
-                local embed = webhook:createEmbed()
-                embed:setDescription("<@764832238529413140>")
-                embed:setThumbnail("https://static.wikia.nocookie.net/pet-simulator/images/4/43/PS99_Huge_Fossil_Dragon.png/revision/latest?cb=20231203071426")
-                embed:setTitle("Got "..v.id)
-                embed:setColor(5177088)
-                webhook:send()
-            end
+        if string.match(v.id, "Huge") and not table.find(hugesInventory, petUID) then
+            preloadHuges()
+            local webhook = webhookBuilder(webhookUrl)
+            webhook:setUsername("NugeNotifier")
+            local embed = webhook:createEmbed()
+            embed:setDescription("<@764832238529413140>")
+            embed:setThumbnail("https://static.wikia.nocookie.net/pet-simulator/images/4/43/PS99_Huge_Fossil_Dragon.png/revision/latest?cb=20231203071426")
+            embed:setTitle(config.discordId.."got "..v.id)
+            embed:setColor(5177088)
+            webhook:send()
         end
     end
 end
 
 --[[LOOP FOR CHECKING]]--
-while wait(60) do
+while wait(10) do
     currentHugesCheck()
 end
