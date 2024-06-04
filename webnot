@@ -147,14 +147,34 @@ printpreloadHuges()
 local function currentHugesCheck()
     for petUID,v in require(game:GetService("ReplicatedStorage"):WaitForChild("Library")).Save.Get().Inventory.Pet do
         if string.match(v.id, "Huge") and not table.find(hugesInventory, petUID) and not game.PlaceId == 15502339080 then
-            preloadHuges()
-            local webhook = webhookBuilder(webhookUrl)
-            webhook:setUsername("NugeNotifier")
-            local embed = webhook:createEmbed()
-            embed:setTitle("<@!"..config.discordId.."> got "..v.id)
-            embed:setThumbnail("https://static.wikia.nocookie.net/pet-simulator/images/5/5e/PS99_Huge_Cyber_Agony.png/revision/latest?cb=20240311010444")
-            embed:setColor(5177088)
-            webhook:send()
+            if v.id == "Huge Wizard Westie" and not v.pt and not v.sh then
+                preloadHuges()
+                local webhook = webhookBuilder(webhookUrl)
+                webhook:setUsername("NugeNotifier")
+                local embed = webhook:createEmbed()
+                embed:setTitle("<@!"..config.discordId.."> got "..v.id)
+                embed:setThumbnail("https://tr.rbxcdn.com/16139584d3671e4c7e2812a6f933dd39/150/150/Image/Png")
+                embed:setColor(5177088)
+                webhook:send()
+            elseif v.id == "Huge Wizard Westie" and v.pt == 1 and not v.sh then
+                preloadHuges()
+                local webhook = webhookBuilder(webhookUrl)
+                webhook:setUsername("NugeNotifier")
+                local embed = webhook:createEmbed()
+                embed:setTitle("<@!"..config.discordId.."> got "..v.id)
+                embed:setThumbnail("https://tr.rbxcdn.com/d72fe87b0a4cb8eec7124d9f57c59c1a/150/150/Image/Png")
+                embed:setColor(5177088)
+                webhook:send()
+            elseif v.id == "Huge Wizard Westie" and v.pt == 2 and not v.sh then
+                preloadHuges()
+                local webhook = webhookBuilder(webhookUrl)
+                webhook:setUsername("NugeNotifier")
+                local embed = webhook:createEmbed()
+                embed:setTitle("<@!"..config.discordId.."> got "..v.id)
+                embed:setThumbnail("https://petsimulatorvalues.com/Admin/Image/Value/Huge%20Wizard%20Westie-Rainbow-.png")
+                embed:setColor(5177088)
+                webhook:send()
+            end
         end
     end
 end
