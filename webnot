@@ -1,4 +1,45 @@
+--[[SETTINGS]]--
+getgenv().config = {
+    discordId = "667064890359545917",
+    webhookUrl = "https://discord.com/api/webhooks/1201931621570445322/yKIPu11QYkWCH9IolW4m159LOV0cF8m7z-IY4XDWRDez-Q3qViCLPqv6iPH7XrBuUpsN",
+    techPrice = "56000",
+    AgonyPrice = 71800000,
+    goldenAgonyPrice = 87300000,
+    rainbowAgonyPrice = 266920000,
+    keysToOpen = 1000,
+}
+
+--[[SETTINGS]]--
+--[[
+getgenv.config = {
+    discordId = ""
+    webhookUrl = ""
+}
+]]--
+
 local hugesInventory = {}
+
+if not config then
+    game.Players.LocalPlayer:Kick("Setup config first") 
+end
+
+print("STARTED WEBHOOK NOTIFIER")
+
+repeat
+    task.wait()
+until game:IsLoaded()
+
+repeat
+    task.wait()
+until game.PlaceId ~= nil
+
+repeat
+    task.wait()
+until game:GetService("Players").LocalPlayer and game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+
+repeat
+    task.wait()
+until game:GetService("Workspace").__THINGS and game:GetService("Workspace").__DEBRIS
 
 --[[VARIABLES]]--
 local network = game:GetService("ReplicatedStorage"):WaitForChild("Network")
@@ -92,31 +133,55 @@ local function webhookBuilder(webhookUrl)
     return webhook
 end
 
+--[[UPDATE HUGES TABLE]]--
 local function preloadHuges()
     for i,v in require(game:GetService("ReplicatedStorage"):WaitForChild("Library")).Save.Get().Inventory.Pet do
-        if  not v.pt and not v.sh and v.id == "Huge Cat" then
+        if  not v.pt and not v.sh and string.match(v.id, "Huge") then
             table.insert(hugesInventory, i)
         end
     end
 end
 
+--[[PRINT SAVED HUGES IN TABLE]]--
 local function printpreloadHuges()
     for i,v in pairs(hugesInventory) do
         print(v)
     end
 end
 
+--[[PRELOAD TABLE WITH HUGES]]--
 preloadHuges()
 printpreloadHuges()
 
+--[[CHECKING INVENTORY FOR NEW HUGES]]--
 local function currentHugesCheck()
     for petUID,v in require(game:GetService("ReplicatedStorage"):WaitForChild("Library")).Save.Get().Inventory.Pet do
-        if  not v.pt and not v.sh and v.id == "Huge" then
-            if not table.find(hugesInventory, petUID) then
-                local function preloadHuges()
+        if string.match(v.id, "Huge") and not table.find(hugesInventory, petUID) then
+            if v.id == "Huge Wizard Westie" and not v.pt and not v.sh then
+                preloadHuges()
+                local webhook = webhookBuilder(webhookUrl)
                 webhook:setUsername("NugeNotifier")
                 local embed = webhook:createEmbed()
-                embed:setTitle("<@764832238529413140> GOT "..v.id)
+                embed:setTitle("<@!"..config.discordId.."> got "..v.id)
+                embed:setThumbnail("https://tr.rbxcdn.com/16139584d3671e4c7e2812a6f933dd39/150/150/Image/Png")
+                embed:setColor(5177088)
+                webhook:send()
+            elseif v.id == "Huge Wizard Westie" and v.pt == 1 and not v.sh then
+                preloadHuges()
+                local webhook = webhookBuilder(webhookUrl)
+                webhook:setUsername("NugeNotifier")
+                local embed = webhook:createEmbed()
+                embed:setTitle("<@!"..config.discordId.."> got "..v.id)
+                embed:setThumbnail("https://tr.rbxcdn.com/d72fe87b0a4cb8eec7124d9f57c59c1a/150/150/Image/Png")
+                embed:setColor(5177088)
+                webhook:send()
+            elseif v.id == "Huge Wizard Westie" and v.pt == 2 and not v.sh then
+                preloadHuges()
+                local webhook = webhookBuilder(webhookUrl)
+                webhook:setUsername("NugeNotifier")
+                local embed = webhook:createEmbed()
+                embed:setTitle("<@!"..config.discordId.."> got "..v.id)
+                embed:setThumbnail("https://petsimulatorvalues.com/Admin/Image/Value/Huge%20Wizard%20Westie-Rainbow-.png")
                 embed:setColor(5177088)
                 webhook:send()
             end
@@ -124,6 +189,7 @@ local function currentHugesCheck()
     end
 end
 
+--[[LOOP FOR CHECKING]]--
 while wait(10) do
-    currentHugesFun()
+    currentHugesCheck()
 end
