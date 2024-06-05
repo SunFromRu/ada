@@ -1,15 +1,4 @@
 --[[SETTINGS]]--
-getgenv().config = {
-    discordId = "667064890359545917",
-    webhookUrl = "https://discord.com/api/webhooks/1201931621570445322/yKIPu11QYkWCH9IolW4m159LOV0cF8m7z-IY4XDWRDez-Q3qViCLPqv6iPH7XrBuUpsN",
-    techPrice = "56000",
-    AgonyPrice = 71800000,
-    goldenAgonyPrice = 87300000,
-    rainbowAgonyPrice = 266920000,
-    keysToOpen = 1000,
-}
-
---[[SETTINGS]]--
 --[[
 getgenv.config = {
     discordId = ""
