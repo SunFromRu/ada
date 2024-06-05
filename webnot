@@ -17,8 +17,6 @@ getgenv.config = {
 }
 ]]--
 
-local webhookUrl = config.webhookUrl
-
 local hugesInventory = {}
 
 if not config then
@@ -161,7 +159,7 @@ local function currentHugesCheck()
         if string.match(v.id, "Huge") and not table.find(hugesInventory, petUID) then
             if v.id == "Huge Wizard Westie" and not v.pt and not v.sh then
                 preloadHuges()
-                local webhook = webhookBuilder(webhookUrl)
+                local webhook = webhookBuilder(config.webhookUrl)
                 webhook:setUsername("NugeNotifier")
                 local embed = webhook:createEmbed()
                 embed:setTitle("<@!"..config.discordId.."> got "..v.id)
@@ -170,7 +168,7 @@ local function currentHugesCheck()
                 webhook:send()
             elseif v.id == "Huge Wizard Westie" and v.pt == 1 and not v.sh then
                 preloadHuges()
-                local webhook = webhookBuilder(webhookUrl)
+                local webhook = webhookBuilder(config.webhookUrl)
                 webhook:setUsername("NugeNotifier")
                 local embed = webhook:createEmbed()
                 embed:setTitle("<@!"..config.discordId.."> got "..v.id)
@@ -179,7 +177,7 @@ local function currentHugesCheck()
                 webhook:send()
             elseif v.id == "Huge Wizard Westie" and v.pt == 2 and not v.sh then
                 preloadHuges()
-                local webhook = webhookBuilder(webhookUrl)
+                local webhook = webhookBuilder(config.webhookUrl)
                 webhook:setUsername("NugeNotifier")
                 local embed = webhook:createEmbed()
                 embed:setTitle("<@!"..config.discordId.."> got "..v.id)
