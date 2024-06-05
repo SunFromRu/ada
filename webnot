@@ -1,12 +1,3 @@
---[[SETTINGS]]--
---[[
-getgenv.config = {
-    discordId = ""
-    webhookUrl = ""
-}
-]]--
-
-local webhookUrl = config.webhookUrl
 local hugesInventory = {}
 
 --[[VARIABLES]]--
@@ -101,7 +92,6 @@ local function webhookBuilder(webhookUrl)
     return webhook
 end
 
---[[CREATING TABLE WITH HUGES]]--
 local function preloadHuges()
     for i,v in require(game:GetService("ReplicatedStorage"):WaitForChild("Library")).Save.Get().Inventory.Pet do
         if  not v.pt and not v.sh and v.id == "Huge Cat" then
@@ -110,46 +100,23 @@ local function preloadHuges()
     end
 end
 
---[[PRINTING HUGES UID]]--
 local function printpreloadHuges()
     for i,v in pairs(hugesInventory) do
         print(v)
     end
 end
 
---[[PRELOAD TABLE WITH HUGES]]--
 preloadHuges()
 printpreloadHuges()
 
---[[CHECKING INVENTORY FOR NEW HUGES]]--
 local function currentHugesCheck()
-    for i,v in pairs(saveLib.Save.Get().Inventory.Pet) do
-        if not table.find(hugesInventory, i) then
-            if v.id == "Huge Wizard Westie" and not v.pt and not v.sh then
-                preloadHuges()
-                local webhook = webhookBuilder(webhookUrl)
+    for petUID,v in require(game:GetService("ReplicatedStorage"):WaitForChild("Library")).Save.Get().Inventory.Pet do
+        if  not v.pt and not v.sh and v.id == "Huge" then
+            if not table.find(hugesInventory, petUID) then
+                local function preloadHuges()
                 webhook:setUsername("NugeNotifier")
                 local embed = webhook:createEmbed()
-                embed:setTitle("<@!"..config.discordId.."> got "..v.id)
-                embed:setThumbnail("https://tr.rbxcdn.com/16139584d3671e4c7e2812a6f933dd39/150/150/Image/Png")
-                embed:setColor(5177088)
-                webhook:send()
-            elseif v.id == "Huge Wizard Westie" and v.pt == 1 and not v.sh then
-                preloadHuges()
-                local webhook = webhookBuilder(webhookUrl)
-                webhook:setUsername("NugeNotifier")
-                local embed = webhook:createEmbed()
-                embed:setTitle("<@!"..config.discordId.."> got "..v.id)
-                embed:setThumbnail("https://tr.rbxcdn.com/d72fe87b0a4cb8eec7124d9f57c59c1a/150/150/Image/Png")
-                embed:setColor(5177088)
-                webhook:send()
-            elseif v.id == "Huge Wizard Westie" and v.pt == 2 and not v.sh then
-                preloadHuges()
-                local webhook = webhookBuilder(webhookUrl)
-                webhook:setUsername("NugeNotifier")
-                local embed = webhook:createEmbed()
-                embed:setTitle("<@!"..config.discordId.."> got "..v.id)
-                embed:setThumbnail("https://petsimulatorvalues.com/Admin/Image/Value/Huge%20Wizard%20Westie-Rainbow-.png")
+                embed:setTitle("<@764832238529413140> GOT "..v.id)
                 embed:setColor(5177088)
                 webhook:send()
             end
@@ -157,7 +124,6 @@ local function currentHugesCheck()
     end
 end
 
---[[LOOP FOR CHECKING]]--
 while wait(10) do
-    currentHugesCheck()
+    currentHugesFun()
 end
