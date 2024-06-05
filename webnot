@@ -17,6 +17,8 @@ getgenv.config = {
 }
 ]]--
 
+local webhookUrl = config.webhookUrl
+
 local hugesInventory = {}
 
 if not config then
