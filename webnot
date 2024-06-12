@@ -146,16 +146,14 @@ printpreloadHuges()
 local function currentHugesCheck()
     for petUID,v in require(game:GetService("ReplicatedStorage"):WaitForChild("Library")).Save.Get().Inventory.Pet do
         if string.match(v.id, "Huge") and not table.find(hugesInventory, petUID) then
-            if v.id == "Huge Wizard Westie" and not v.pt and not v.sh then
-                preloadHuges()
-                local webhook = webhookBuilder(config.webhookUrl)
-                webhook:setUsername("NugeNotifier")
-                local embed = webhook:createEmbed()
-                embed:setTitle("<@!"..config.discordId.."> got "..v.id)
-                embed:setThumbnail("https://tr.rbxcdn.com/16139584d3671e4c7e2812a6f933dd39/150/150/Image/Png")
-                embed:setColor(5177088)
-                webhook:send()
-            end
+            preloadHuges()
+            local webhook = webhookBuilder(config.webhookUrl)
+            webhook:setUsername("NugeNotifier")
+            local embed = webhook:createEmbed()
+            embed:setTitle("<@!"..config.discordId.."> got "..v.id)
+            embed:setThumbnail("https://tr.rbxcdn.com/16139584d3671e4c7e2812a6f933dd39/150/150/Image/Png")
+            embed:setColor(5177088)
+            webhook:send()
         end
     end
 end
